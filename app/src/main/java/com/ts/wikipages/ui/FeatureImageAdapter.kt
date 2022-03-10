@@ -38,14 +38,11 @@ class FeatureImageAdapter(val viewModel: viewModel) :
     private fun setImage(imgView: ImageView, url: String, pos: Int) {
         viewModel.viewModelScope.launch(Dispatchers.IO) {
             url.let {
-                // Log.d("@@url", "${url}")
                 Log.d("##setImageCalled", "setImageCalled $pos")
                 val imgUri = it.toUri().buildUpon().scheme("https").build()
                 imgView.load(imgUri) {
                     placeholder(R.drawable.loading_animation)
                     error(R.drawable.ic_broken_image)
-                    // diskCachePolicy(CachePolicy.ENABLED)
-                    // this.scale(Scale.FIT)
                 }
             }
         }
